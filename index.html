@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tatiana Bock — Backend Developer · Java & Spring Boot</title>
+<title>Tatiana Model Bock — Backend Developer · Java & Spring Boot</title>
+<meta name="description" content="Portfólio de Tatiana Model Bock, Desenvolvedora Backend com foco em Java e Spring Boot. Projetos reais, estágio Compass UOL e Ciências da Computação UNINTER.">
+<meta property="og:title" content="Tatiana Model Bock — Backend Developer">
+<meta property="og:description" content="Desenvolvedora Backend Java & Spring Boot. Projetos reais, comprometida e focada em entrega.">
+<meta property="og:url" content="https://tatianamodelgbock.github.io/portfotio-tatiana_bock">
+<meta name="theme-color" content="#050810">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -572,12 +577,15 @@
   }
 
   .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .js-loaded .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s, transform 0.6s;
   }
-
-  .reveal.visible {
+  .js-loaded .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -622,16 +630,96 @@
     .hero-cta { justify-content: center; }
   }
 
+  /* SCROLL MARGIN para nav fixo */
+  section { scroll-margin-top: 5rem; }
+
+  /* FOCO VISÍVEL */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* BLINK */
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
+  .proj-link {
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: opacity 0.2s;
+  }
+  .proj-link:hover { opacity: 0.7; }
+  .proj-badge {
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s;
+  }
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: rgba(5,8,16,0.97);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    z-index: 99;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-mobile a:hover { color: var(--accent); }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     nav ul { display: none; }
+    .nav-hamburger { display: flex; }
     #hero { padding: 7rem 1.5rem 3rem; }
     section { padding: 0 1.5rem; }
     .about-grid { grid-template-columns: 1fr; }
@@ -655,15 +743,26 @@
     <li><a href="#projetos">projetos</a></li>
     <li><a href="#contato">contato</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile">
+  <a href="#sobre" onclick="document.querySelector('.nav-mobile').classList.remove('open')">sobre</a>
+  <a href="#skills" onclick="document.querySelector('.nav-mobile').classList.remove('open')">skills</a>
+  <a href="#experiencia" onclick="document.querySelector('.nav-mobile').classList.remove('open')">experiência</a>
+  <a href="#projetos" onclick="document.querySelector('.nav-mobile').classList.remove('open')">projetos</a>
+  <a href="#contato" onclick="document.querySelector('.nav-mobile').classList.remove('open')">contato</a>
 </nav>
 
+<main id="conteudo-principal">
 <!-- HERO -->
 <section id="hero">
   <div class="hero-content">
   <p class="hero-tag">backend developer · java & spring boot</p>
   <h1 class="hero-name">
     <span class="first">Tatiana</span>
-    <span class="last">Bock</span>
+    <span class="last">Model Bock</span>
   </h1>
   <p class="hero-role">
     Backend Java · Spring Boot · <span class="highlight">Entrega no prazo.</span>
@@ -671,6 +770,18 @@
   <p class="hero-desc">
     Desenvolvedora Backend com foco em Java e Spring Boot. Construo APIs REST robustas, bem estruturadas e seguras — com responsabilidade e atenção a cada detalhe do código.
   </p>
+  <div class="hero-contacts" style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.5rem;opacity:0;animation:fadeUp 0.7s 0.75s forwards;">
+    <a href="mailto:tatianabock08@gmail.com" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
+      <span style="color:var(--accent)">✉</span> tatianabock08@gmail.com
+    </a>
+    <a href="https://github.com/TatianaModelGBock" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
+      <span style="color:var(--accent2)">⌥</span> TatianaModelGBock
+    </a>
+    <a href="https://www.linkedin.com/in/tatiana-model-guimar%C3%A3es-bock/" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
+      <span style="color:var(--accent3)">in</span> tatiana-model-guimarães-bock
+    </a>
+  </div>
+
   <div class="hero-cta">
     <a href="#projetos" class="btn-primary">ver projetos</a>
     <a href="#contato" class="btn-secondary">entrar em contato</a>
@@ -690,7 +801,7 @@
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Sou <strong>Tatiana Model Guimarães Bock</strong>, desenvolvedora Full Stack em formação desde outubro de 2023. Em menos de 2 anos construí projetos reais aplicados em empresas, passei por estágio na Compass UOL e estou cursando Ciências da Computação na UNINTER.</p>
+        <p>Sou <strong>Tatiana Model Guimarães Bock</strong>, desenvolvedora Full Stack em formação desde outubro de 2023. Em mais de 2 anos construí projetos reais aplicados em empresas, passei por estágio na Compass UOL e estou cursando Ciências da Computação na UNINTER.</p>
         <p>Meu foco é <strong>Backend com Java e Spring Boot</strong> — APIs REST, arquitetura em camadas, Spring Security, JPA/Hibernate e boas práticas de desenvolvimento. Tenho também conhecimento em Python, HTML, CSS e JavaScript.</p>
         <p><strong>Compromisso e responsabilidade</strong> não são só palavras pra mim — são a forma como trabalho. Cada projeto recebe atenção total, do planejamento à entrega.</p>
       </div>
@@ -704,12 +815,12 @@
           <div class="stat-label">Entregas no prazo</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">Full</div>
-          <div class="stat-label">Stack Developer</div>
+          <div class="stat-num">Java</div>
+          <div class="stat-label">Foco Backend</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Comprometimento</div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Projetos no GitHub</div>
         </div>
       </div>
     </div>
@@ -751,19 +862,11 @@
     </div>
     <div class="exp-list">
       <div class="exp-item">
-        <div class="exp-year">2022 →<br>atual</div>
+        <div class="exp-year">2023 →<br>atual</div>
         <div>
-          <div class="exp-title">Desenvolvedora Full Stack</div>
-          <div class="exp-company">// empresa atual</div>
-          <div class="exp-desc">Desenvolvimento e manutenção de sistemas back-end em Java e Python, integração com APIs REST, criação de interfaces responsivas com HTML, CSS e JavaScript. Atuação em todas as fases do projeto, da análise à entrega.</div>
-        </div>
-      </div>
-      <div class="exp-item">
-        <div class="exp-year">2020 →<br>2022</div>
-        <div>
-          <div class="exp-title">Desenvolvedora Back-End</div>
-          <div class="exp-company">// experiência anterior</div>
-          <div class="exp-desc">Foco em desenvolvimento back-end com Java e Spring Boot. Modelagem de banco de dados, criação de APIs, participação em squads ágeis com entrega consistente dentro dos prazos definidos.</div>
+          <div class="exp-title">Desenvolvedora Backend · Estudos e Projetos</div>
+          <div class="exp-company">// autônoma · em formação</div>
+          <div class="exp-desc">Desde outubro de 2023 desenvolvendo projetos reais com Java, Spring Boot, Python e Flask. Estágio na Compass UOL, extensão universitária aplicada na Flor Linda Confecções e cursando Ciências da Computação na UNINTER.</div>
         </div>
       </div>
     </div>
@@ -792,7 +895,7 @@
           <span class="tag">Maven</span>
           <span class="tag">REST API</span>
         </div>
-        <a href="https://github.com/TatianaModelGBock/api-usuarios" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+        <a href="https://github.com/TatianaModelGBock/api-usuarios" target="_blank" rel="noopener noreferrer" class="proj-link">
           → ver no GitHub
         </a>
       </div>
@@ -837,72 +940,36 @@
         <span style="margin-top:0.5rem;font-family:var(--mono);font-size:0.75rem;color:var(--muted);display:inline-flex;align-items:center;gap:0.4rem;">📄 trabalho acadêmico · 2025</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- CONTATO -->
-<section id="contato">
-  <div class="section-wrap reveal">
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2 class="section-title">Contato</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="contact-wrap">
-      <div class="contact-info">
-        <h3>Vamos trabalhar juntos?</h3>
-        <p>Estou disponível para oportunidades CLT, PJ ou estágio com foco em Backend Java/Spring Boot. Se você precisa de alguém comprometida que entrega no prazo — vamos conversar.</p>
-        <div class="contact-links">
-          <a href="mailto:tatianabock08@gmail.com" class="contact-link">tatianabock08@gmail.com</a>
-          <a href="https://www.linkedin.com/in/tatiana-model-guimar%C3%A3es-bock/" class="contact-link" target="_blank">linkedin.com/in/tatiana-model-guimarães-bock</a>
-          <a href="https://github.com/TatianaModelGBock" class="contact-link" target="_blank">github.com/TatianaModelGBock</a>
+    <!-- PROJETOS PRINCIPAIS -->
+    <p style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin:0 0 1.5rem;letter-spacing:0.05em;">// projetos principais</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-tag">back-end · estudo de arquitetura</div>
+        <div class="project-title">API de Usuários, Produtos e Caixa</div>
+        <div class="project-desc">API REST em Java com Spring Boot seguindo arquitetura em camadas (Controller → DTO → Service → Repository → Model). Inclui controle de estoque com alertas automáticos, módulo financeiro com idempotência, controle de concorrência via @Version e tratamento global de erros.</div>
+        <div class="project-stack">
+          <span class="tag">Java 21</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">H2 Database</span><span class="tag">Maven</span><span class="tag">REST API</span>
         </div>
-      </div>
-      <div class="contact-form">
-        <div class="form-group">
-          <label>nome</label>
-          <input type="text" placeholder="Seu nome">
-        </div>
-        <div class="form-group">
-          <label>e-mail</label>
-          <input type="email" placeholder="seu@email.com">
-        </div>
-        <div class="form-group">
-          <label>mensagem</label>
-          <textarea rows="4" placeholder="Conte sobre seu projeto..."></textarea>
-        </div>
-        <a href="#" class="btn-primary" style="text-align:center">enviar mensagem</a>
+        <a href="https://github.com/TatianaModelGBock/api-usuarios" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">full stack · aplicado em empresa real</div>
         <div class="project-title">HSE – Sistema de Gestão de Ocorrências</div>
-        <div class="project-desc">Sistema web para registro e análise de ocorrências de Segurança do Trabalho (HSE), aplicado na <strong style="color:var(--text)">Flor Linda Confecções EIRELLI – Sombrio/SC</strong>. Conta com login por sessão, navegação entre registros, ações corretivas, estatísticas por classificação/gravidade/área e criptografia AES-256 dos dados sensíveis no banco.</div>
+        <div class="project-desc">Sistema web para registro e análise de ocorrências de Segurança do Trabalho (HSE), aplicado na <strong style="color:var(--text)">Flor Linda Confecções – Sombrio/SC</strong>. Login por sessão, navegação entre registros, ações corretivas, estatísticas e criptografia AES-256 dos dados sensíveis.</div>
         <div class="project-stack">
-          <span class="tag">Python 3</span>
-          <span class="tag">Flask</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">AES-256</span>
-          <span class="tag">HTML/CSS/JS</span>
+          <span class="tag">Python 3</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">AES-256</span><span class="tag">HTML/CSS/JS</span>
         </div>
-        <span style="margin-top:0.5rem;font-family:var(--mono);font-size:0.75rem;color:var(--muted);display:inline-flex;align-items:center;gap:0.4rem;">
-          🔒 repositório privado
-        </span>
+        <span class="proj-badge">🔒 repositório privado</span>
       </div>
       <div class="project-card">
         <div class="project-tag">extensão universitária · empresa parceira</div>
         <div class="project-title">HSE – Sistema de Segurança v2</div>
-        <div class="project-desc">Reescrita do sistema HSE em Java com Spring Boot, desenvolvida como Projeto de Extensão Universitária em parceria com a <strong style="color:var(--text)">Flor Linda Confecções – Sombrio/SC</strong>. Digitaliza o controle de ocorrências (Acidentes, Incidentes e Desvios), com autenticação via Spring Security, dashboard de indicadores em tempo real e interface dark moderna com Thymeleaf.</div>
+        <div class="project-desc">Reescrita do sistema HSE em Java com Spring Boot, desenvolvida como Projeto de Extensão Universitária em parceria com a <strong style="color:var(--text)">Flor Linda Confecções – Sombrio/SC</strong>. Spring Security, dashboard em tempo real e interface dark com Thymeleaf.</div>
         <div class="project-stack">
-          <span class="tag">Java 21</span>
-          <span class="tag">Spring Boot 3</span>
-          <span class="tag">Spring Security</span>
-          <span class="tag">Thymeleaf</span>
-          <span class="tag">H2 Database</span>
-          <span class="tag">CSS3</span>
+          <span class="tag">Java 21</span><span class="tag">Spring Boot 3</span><span class="tag">Spring Security</span><span class="tag">Thymeleaf</span><span class="tag">H2 Database</span>
         </div>
-        <span style="margin-top:0.5rem;font-family:var(--mono);font-size:0.75rem;color:var(--muted);display:inline-flex;align-items:center;gap:0.4rem;">
-          🔒 privado · avaliação acadêmica
-        </span>
+        <span class="proj-badge">🔒 privado · avaliação acadêmica</span>
       </div>
     </div>
 
@@ -916,7 +983,7 @@
         <div class="project-stack">
           <span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">DevSecOps</span>
         </div>
-        <a href="https://github.com/TatianaModelGBock/Projeto-final-PB-SET-2024-CompassUol" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/Projeto-final-PB-SET-2024-CompassUol" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">devsecops · containers</div>
@@ -925,7 +992,7 @@
         <div class="project-stack">
           <span class="tag">Docker</span><span class="tag">DevSecOps</span><span class="tag">Linux</span>
         </div>
-        <a href="https://github.com/TatianaModelGBock/Atividade-DevSecOps-Docker" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/Atividade-DevSecOps-Docker" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">infraestrutura · sysadmin</div>
@@ -934,7 +1001,7 @@
         <div class="project-stack">
           <span class="tag">Linux</span><span class="tag">Shell Script</span><span class="tag">Bash</span>
         </div>
-        <a href="https://github.com/TatianaModelGBock/Atividade-Linux" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/Atividade-Linux" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
     </div>
 
@@ -946,67 +1013,106 @@
         <div class="project-title">Desafio POO — iPhone</div>
         <div class="project-desc">Modelagem orientada a objetos do iPhone, implementando interfaces para Reprodutor Musical, Aparelho Telefônico e Navegador de Internet com UML e Java.</div>
         <div class="project-stack"><span class="tag">Java</span><span class="tag">POO</span><span class="tag">UML</span></div>
-        <a href="https://github.com/TatianaModelGBock/POO-Desafio-IPhone" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/POO-Desafio-IPhone" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">poo · banco digital</div>
         <div class="project-title">Banco Digital com Java e POO</div>
         <div class="project-desc">Implementação de um banco digital com orientação a objetos — contas corrente e poupança, operações de depósito, saque e transferência, herança e polimorfismo.</div>
         <div class="project-stack"><span class="tag">Java</span><span class="tag">POO</span><span class="tag">Herança</span><span class="tag">Polimorfismo</span></div>
-        <a href="https://github.com/TatianaModelGBock/lab-banco-digital-oo" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/lab-banco-digital-oo" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">java · streams api</div>
         <div class="project-title">Stream API Java</div>
         <div class="project-desc">Estudos e exercícios práticos com a Stream API do Java — filter, map, reduce, collectors e operações funcionais para ganho de produtividade no código.</div>
         <div class="project-stack"><span class="tag">Java</span><span class="tag">Stream API</span><span class="tag">Functional</span></div>
-        <a href="https://github.com/TatianaModelGBock/ganhando_produtividade_com_Stream_API_Java" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/ganhando_produtividade_com_Stream_API_Java" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">java · controle de fluxo</div>
         <div class="project-title">Desafio Controle de Fluxo</div>
         <div class="project-desc">Desafio prático de lógica em Java com controle de fluxo, exceções customizadas e boas práticas de estruturação do código.</div>
         <div class="project-stack"><span class="tag">Java</span><span class="tag">Exceptions</span><span class="tag">Lógica</span></div>
-        <a href="https://github.com/TatianaModelGBock/DesafioControleFluxo" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/DesafioControleFluxo" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
       <div class="project-card">
         <div class="project-tag">java · bootcamp</div>
         <div class="project-title">Desafio POO Bootcamp</div>
         <div class="project-desc">Desafio de POO do bootcamp DIO — modelagem de um sistema de bootcamp com cursos, mentorias e devs, aplicando abstração, encapsulamento, herança e polimorfismo.</div>
         <div class="project-stack"><span class="tag">Java</span><span class="tag">POO</span><span class="tag">Abstração</span></div>
-        <a href="https://github.com/TatianaModelGBock/desafio-poo-bootcamp" target="_blank" style="margin-top:0.5rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">→ ver no GitHub</a>
+        <a href="https://github.com/TatianaModelGBock/desafio-poo-bootcamp" target="_blank" rel="noopener noreferrer" class="proj-link">→ ver no GitHub</a>
       </div>
     </div>
   </div>
 </section>
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-wrap reveal">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Contato</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Vamos trabalhar juntos?</h3>
+        <p>Estou disponível para oportunidades CLT, estágio com foco em Backend Java/Spring Boot. Se você precisa de alguém comprometida que entrega no prazo — vamos conversar.</p>
+        <div class="contact-links">
+          <a href="mailto:tatianabock08@gmail.com" class="contact-link">tatianabock08@gmail.com</a>
+          <a href="https://www.linkedin.com/in/tatiana-model-guimar%C3%A3es-bock/" class="contact-link" target="_blank" rel="noopener noreferrer">linkedin.com/in/tatiana-model-guimarães-bock</a>
+          <a href="https://github.com/TatianaModelGBock" class="contact-link" target="_blank" rel="noopener noreferrer">github.com/TatianaModelGBock</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form action="https://formsubmit.co/tatianabock08@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Contato pelo Portfólio">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="form-group">
+            <label for="nome">nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">e-mail</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="mensagem">mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Conte sobre seu projeto..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;text-align:center;border:none;cursor:pointer;">enviar mensagem</button>
+        </form>
+      </div>
+    </div>
 
+</main>
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 — Tatiana Model Guimarães Bock</p>
+  <p>© 2026 — Tatiana Model Guimarães Bock</p>
   <p>Desenvolvido com dedicação e muita atenção aos detalhes.</p>
 </footer>
 
 <script>
+  // Ativa animações só com JS disponível
+  document.body.classList.add('js-loaded');
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Typing cursor blink on hero role
+  // Cursor piscante
   const role = document.querySelector('.hero-role');
   if (role) {
-    role.innerHTML += '<span style="color:var(--accent);animation:blink 1s step-end infinite">_</span>';
+    const cursor = document.createElement('span');
+    cursor.style.cssText = 'color:var(--accent);animation:blink 1s step-end infinite';
+    cursor.textContent = '_';
+    role.appendChild(cursor);
   }
-
-  const style = document.createElement('style');
-  style.textContent = '@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }';
-  document.head.appendChild(style);
 </script>
 </body>
 </html>
